@@ -2,7 +2,20 @@
 body {
     font-family: Arial, sans-serif;
   }
+
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
   
+  .button-container button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
   #character-container {
     display: flex;
     flex-wrap: wrap;
@@ -32,3 +45,5 @@ body {
   .character-card p {
     margin: 4px 0;
   }
+
+ 
