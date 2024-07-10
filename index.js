@@ -1,40 +1,74 @@
-//fetch data 
+let characters = [];
+
+// Fetch characters from the Rick and Morty API
 function fetchData() {
-    fetch('https://rickandmortyapi.com/api/character')
-      .then((resp) => resp.json())
-      .then((data) => {
-        const characterContainer = document.getElementById('character-container');
-        characterContainer.innerHTML = '';
-        // iterate thriugh data and display on the dom. each data beccomes a div
-        data.results.forEach(character => {
-          const characterCard = document.createElement('div');
-          characterCard.className = 'character-card';
+  fetch('https://rickandmortyapi.com/api/character')
+    .then((resp) => resp.json())
+    .then((data) => {
+      characters = data.results;
+      displayCharacters(characters);
+    })
+    .catch(error => {
+      console.error('Error fetching characters:', error);
+    });
+}
 
-          const nameElement = document.createElement('h2');
-          nameElement.innerText = character.name;
+// Display characters based on the provided list
+function displayCharacters(characterList) {
+  const characterContainer = document.getElementById('character-container');
+  characterContainer.innerHTML = '';
 
-          const imageElement = document.createElement('img');
-          imageElement.src = character.image;
-          imageElement.alt = character.name;
+  characterList.forEach(character => {
+    const characterCard = document.createElement('div');
+    characterCard.className = 'character-card';
 
-          const statusElement = document.createElement('p');
-          statusElement.innerText = `Status: ${character.status}`;
+    const nameElement = document.createElement('h2');
+    nameElement.innerText = character.name;
 
-          const speciesElement = document.createElement('p');
-          speciesElement.innerText = `Species: ${character.species}`;
+    const imageElement = document.createElement('img');
+    imageElement.src = character.image;
+    imageElement.alt = character.name;
 
-          characterCard.appendChild(nameElement);
-          characterCard.appendChild(imageElement);
-          characterCard.appendChild(statusElement);
-          characterCard.appendChild(speciesElement);
+    const statusElement = document.createElement('p');
+    statusElement.innerText = `Status: ${character.status}`;
 
-          characterContainer.appendChild(characterCard);
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching characters:', error);
-      });
-  }
+    const speciesElement = document.createElement('p');
+    speciesElement.innerText = `Species: ${character.species}`;
 
-  // Fetch data when the document is fully loaded
-  document.addEventListener('DOMContentLoaded', fetchData);
+    characterCard.appendChild(nameElement);
+    characterCard.appendChild(imageElement);
+    characterCard.appendChild(statusElement);
+    characterCard.appendChild(speciesElement);
+
+    characterContainer.appendChild(characterCard);
+  });
+}
+
+// Filter characters based on the selected filter
+function filterCharacters(filter) {
+    let filteredCharacters;
+    switch (filter) {
+        case 'humans':
+            filteredCharacters = characters.filter(character => character.species === 'Human');
+            break;
+        case 'aliens':
+            filteredCharacters = characters.filter(character => character.species !== 'Human');
+            break;
+        case 'alive':
+            filteredCharacters = characters.filter(character => character.status === 'Alive');
+            break;
+        case 'dead':
+            filteredCharacters = characters.filter(character => character.status === 'Dead');
+            break;
+        default:
+            filteredCharacters = characters;
+    }
+    displayCharacters(filteredCharacters);
+}
+
+
+// Add event listeners to the buttons
+
+
+// Fetch data when the document is fully loaded
+document.addEventListener('DOMContentLoaded', fetchData);
