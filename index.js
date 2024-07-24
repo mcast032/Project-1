@@ -1,6 +1,5 @@
 let characters = [];
 
-// Fetch characters from the Rick and Morty API
 function fetchData() {
   fetch('https://rickandmortyapi.com/api/character')
     .then((resp) => resp.json())
@@ -13,7 +12,6 @@ function fetchData() {
     });
 }
 
-// Display characters based on the provided list
 function displayCharacters(characterList) {
   const characterContainer = document.getElementById('character-container');
   characterContainer.innerHTML = '';
@@ -39,18 +37,25 @@ function displayCharacters(characterList) {
     likeButton.innerText = 'Like';
     likeButton.className = 'like-button';
     likeButton.addEventListener('click', () => {
-      likeButton.classList.toggle('liked');
-    
+      characterCard.classList.toggle('liked');
     });
 
     const deleteButton = document.createElement('button');
     deleteButton.innerText = 'Delete';
     deleteButton.className = 'delete-button';
     deleteButton.addEventListener('click', () => {
-      characterCard.remove();
+      characterCard.classList.add('deleted');
     });
 
-    
+      characterCard.addEventListener('mouseover', () => {
+        characterCard.style.transform = 'scale(1.05)';
+        characterCard.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+      });
+      characterCard.addEventListener('mouseout', () => {
+        characterCard.style.transform = 'scale(1)';
+        characterCard.style.boxShadow = 'none';
+      });
+  
 
     characterCard.appendChild(nameElement);
     characterCard.appendChild(imageElement);
@@ -63,30 +68,26 @@ function displayCharacters(characterList) {
   });
 }
 
-// Filter characters based on the selected filter
 function filterCharacters(filter) {
-    let filteredCharacters;
-    switch (filter) {
-        case 'humans':
-            filteredCharacters = characters.filter(character => character.species === 'Human');
-            break;
-        case 'aliens':
-            filteredCharacters = characters.filter(character => character.species !== 'Human');
-            break;
-        case 'alive':
-            filteredCharacters = characters.filter(character => character.status === 'Alive');
-            break;
-        case 'dead':
-            filteredCharacters = characters.filter(character => character.status === 'Dead');
-            break;
-        default:
-            filteredCharacters = characters;
-    }
-    displayCharacters(filteredCharacters);
+  let filteredCharacters;
+  switch (filter) {
+    case 'humans':
+      filteredCharacters = characters.filter(character => character.species === 'Human');
+      break;
+    case 'aliens':
+      filteredCharacters = characters.filter(character => character.species !== 'Human');
+      break;
+    case 'alive':
+      filteredCharacters = characters.filter(character => character.status === 'Alive');
+      break;
+    case 'dead':
+      filteredCharacters = characters.filter(character => character.status === 'Dead');
+      break;
+    default:
+      filteredCharacters = characters;
+  }
+  displayCharacters(filteredCharacters);
 }
-
-
-// Add event listeners to the buttons
 
 document.getElementById('all').addEventListener('click', () => filterCharacters('all'));
 document.getElementById('humans').addEventListener('click', () => filterCharacters('humans'));
@@ -94,8 +95,4 @@ document.getElementById('aliens').addEventListener('click', () => filterCharacte
 document.getElementById('alive').addEventListener('click', () => filterCharacters('alive'));
 document.getElementById('dead').addEventListener('click', () => filterCharacters('dead'));
 
-
-// Fetch data when the document is fully loaded
-document.addEventListener('DOMContentLoaded', ()=>{
-  fetchData()
-});
+document.addEventListener('DOMContentLoaded', fetchData);

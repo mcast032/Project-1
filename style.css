@@ -1,49 +1,76 @@
-
 body {
-    font-family: Arial, sans-serif;
-  }
+  font-family: Arial, sans-serif;
+}
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .button-container button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  #character-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .character-card {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 16px;
-    margin: 8px;
-    width: 200px;
-    text-align: center;
-  }
-  
-  .character-card h2 {
-    margin: 0 0 10px;
-    font-size: 1.5em;
-  }
-  
-  .character-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
-  
-  .character-card p {
-    margin: 4px 0;
-  }
+.button-container button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
- 
+#character-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.character-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 8px;
+  width: 200px;
+  text-align: center;
+  position: relative;
+  transition: background-color 0.3s ease, filter 0.3s ease;
+}
+
+.character-card h2 {
+  margin: 0 0 10px;
+  font-size: 1.5em;
+}
+
+.character-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.character-card p {
+  margin: 4px 0;
+}
+
+.like-button, .delete-button {
+  margin: 5px 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+}
+
+.like-button {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.delete-button {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.liked {
+  background-color: #90ee90; /* Light green */
+}
+
+.deleted {
+  filter: blur(5px);
+  pointer-events: none; /* Disable interactions with the blurred card */
+}
