@@ -69,6 +69,14 @@ function filterCharacters(filter) {
 
 // Add event listeners to the buttons
 
+document.getElementById('all').addEventListener('click', () => filterCharacters('all'));
+document.getElementById('humans').addEventListener('click', () => filterCharacters('humans'));
+document.getElementById('aliens').addEventListener('click', () => filterCharacters('aliens'));
+document.getElementById('alive').addEventListener('click', () => filterCharacters('alive'));
+document.getElementById('dead').addEventListener('click', () => filterCharacters('dead'));
+
 
 // Fetch data when the document is fully loaded
-document.addEventListener('DOMContentLoaded', fetchData);
+document.addEventListener('DOMContentLoaded', ()=>{
+  fetchData()
+});
