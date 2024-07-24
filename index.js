@@ -35,10 +35,29 @@ function displayCharacters(characterList) {
     const speciesElement = document.createElement('p');
     speciesElement.innerText = `Species: ${character.species}`;
 
+    const likeButton = document.createElement('button');
+    likeButton.innerText = 'Like';
+    likeButton.className = 'like-button';
+    likeButton.addEventListener('click', () => {
+      likeButton.classList.toggle('liked');
+    
+    });
+
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete';
+    deleteButton.className = 'delete-button';
+    deleteButton.addEventListener('click', () => {
+      characterCard.remove();
+    });
+
+    
+
     characterCard.appendChild(nameElement);
     characterCard.appendChild(imageElement);
     characterCard.appendChild(statusElement);
     characterCard.appendChild(speciesElement);
+    characterCard.appendChild(likeButton);
+    characterCard.appendChild(deleteButton);
 
     characterContainer.appendChild(characterCard);
   });

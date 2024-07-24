@@ -1,18 +1,13 @@
 The title of your project
 RICK & MORTY WORLD
 
-A description of what your project does
-Creating a single-page application (SPA) centered around characters from a TV show can be both fun and educational. Here are a few ideas you could consider:
-
 1. Character Encyclopedia
    Description: An app that serves as a comprehensive guide to the characters of a particular TV show.
 
 Features:
 
-Character Profiles: Detailed profiles with images, background stories, and notable quotes.
+Character Profiles: Detailed profiles with images, a.
 Search and Filter: Search characters by name, filter by attributes (e.g., affiliation, species, role in the story).
-Relationships Map: Visual representation of relationships between characters (e.g., friends, enemies, family).
-Episode Appearances: List of episodes each character appears in, with links to episode summaries.
 Favorite Characters: Allow users to mark their favorite characters and save them for easy access. 2. Episode Guide with Character Focus
 Description: An episode guide that highlights the role of each character in different episodes.
 
