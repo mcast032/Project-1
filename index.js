@@ -4,6 +4,7 @@ function fetchData() {
   fetch('https://rickandmortyapi.com/api/character')
     .then((resp) => resp.json())
     .then((data) => {
+      console.log('Fetched data:', data)
       characters = data.results;
       displayCharacters(characters);
     })
@@ -13,10 +14,12 @@ function fetchData() {
 }
 
 function displayCharacters(characterList) {
+  console.log('Displaying characters:', characterList)
   const characterContainer = document.getElementById('character-container');
   characterContainer.innerHTML = '';
 
   characterList.forEach(character => {
+    console.log('Processing character:', character);
     const characterCard = document.createElement('div');
     characterCard.className = 'character-card';
 
@@ -34,6 +37,7 @@ function displayCharacters(characterList) {
     speciesElement.innerText = `Species: ${character.species}`;
 
     const likeButton = document.createElement('button');
+    console.log('Liked character:', character.name)
     likeButton.innerText = 'Like';
     likeButton.className = 'like-button';
     likeButton.addEventListener('click', () => {
@@ -41,6 +45,7 @@ function displayCharacters(characterList) {
     });
 
     const deleteButton = document.createElement('button');
+    console.log('Deleted character:', character.name)
     deleteButton.innerText = 'Delete';
     deleteButton.className = 'delete-button';
     deleteButton.addEventListener('click', () => {
@@ -69,6 +74,7 @@ function displayCharacters(characterList) {
 }
 
 function filterCharacters(filter) {
+  console.log('Filter applied:', filter)
   let filteredCharacters;
   switch (filter) {
     case 'humans':
@@ -86,10 +92,14 @@ function filterCharacters(filter) {
     default:
       filteredCharacters = characters;
   }
+  console.log('Filtered characters:', filteredCharacters);
   displayCharacters(filteredCharacters);
 }
 
-document.getElementById('all').addEventListener('click', () => filterCharacters('all'));
+document.getElementById('all').addEventListener('click', () => {
+  console.log('Filter: all')
+  filterCharacters('all')
+});
 document.getElementById('humans').addEventListener('click', () => filterCharacters('humans'));
 document.getElementById('aliens').addEventListener('click', () => filterCharacters('aliens'));
 document.getElementById('alive').addEventListener('click', () => filterCharacters('alive'));

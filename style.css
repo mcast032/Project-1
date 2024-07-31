@@ -57,20 +57,20 @@ body {
 }
 
 .like-button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   color: white;
 }
 
 .delete-button {
-  background-color: #f44336; /* Red */
+  background-color: #f44336; 
   color: white;
 }
 
 .liked {
-  background-color: #90ee90; /* Light green */
+  background-color: #90ee90; 
 }
 
 .deleted {
   filter: blur(5px);
-  pointer-events: none; /* Disable interactions with the blurred card */
+  pointer-events: none; /
 }
